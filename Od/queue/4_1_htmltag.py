@@ -3,7 +3,7 @@ class Stack :
         if list == None :
             self.item = []
         else :
-            self.item = list()
+            self.item = list
 
     def isEmpty(self) : #empty=true
         if self.item == [] :
