@@ -14,8 +14,13 @@ class Queue:
     def isEmpty(self):
         return len(self.data) == 0
 
+    def rev(self, input):
+        for i in range(len(self.data)):
+            if self.data[i] == input:
+                v = self.data.pop(i)
+                self.data.insert(0, v)
 
-inp = input("Enter Input (Normal, Mirror) : ").split(" ")
-q=Queue()
 
-
+q = Queue([1, 2, 3, 4, 5])
+q.rev(5)
+print(q.data)

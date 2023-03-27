@@ -26,8 +26,11 @@ class Stack:
         return self.data[-1]
 
 
+count_dict = {'{': 0, '<': 0, '(': 0, '[': 0}
+
+
 def par_check(inp):
-    pa_dict = {')': '(', '}': '{', ']': '['}
+    pa_dict = {')': '(', '}': '{', ']': '[', '>': '<'}
     stk = Stack()
     for i in inp:
         if i not in pa_dict.values() and i not in pa_dict.keys():
@@ -39,14 +42,15 @@ def par_check(inp):
         else:
             pop_value = stk.peek()
             if pa_dict[i] == pop_value:
-                stk.pop()
+                pop = stk.pop()
+                count_value = count_dict[pop]
+                count_dict.update({pop: count_value+1})
 
             else:
                 if not stk.isEmpty():
                     print(f"{inp} Unmatch open-close")
                 else:
                     print(f"{inp} close paren excess")
-                return
 
     if not stk.isEmpty():
         print(f"{inp} open paren excess   {stk.size()} : {stk}")
@@ -58,4 +62,6 @@ def par_check(inp):
 
 
 inp = input("Enter expresion : ")
+
 par_check(inp)
+print(count_dict)

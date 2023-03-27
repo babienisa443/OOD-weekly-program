@@ -12,35 +12,36 @@ class Stack:
         self.data.append(data)
 
     def pop(self):
-        return self.data.pop()
+        return self.data.pop(-1)
 
     def size(self):
         return len(self.data)
 
     def peek(self):
         if self.isEmpty():
-            return None
+            return 
         else:
             return self.data[-1]
 
 
 def paren(data):
-    paren = {')': '('}
+    paren = {')': '(', ']': '['}
     s = Stack()
     for i in data:
-        if i not in paren.values() and i not in paren.keys():
-            continue
-        if i == paren.values():
+
+        if i in list(paren.values()):
             s.push(i)
         else:
-            p = s.peek()
-            if paren == p:
+
+            if paren[i] == s.peek():
                 s.pop()
             
+
     if s.isEmpty():
-            print(True)
+        print(True)
     else:
         print(False)
+
 
 inp = input("Enter input : ")
 paren(inp)
